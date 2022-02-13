@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<testsuite errors="0" failures="1" name="io.cucumber.core.plugin.JUnitFormatter" skipped="0" tests="1" time="86.789">
+    <testcase classname="test the forgotpassword functionality" name="verify user is able to send the confirmation link" time="86.126">
+        <failure message="no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//h1[@class='h4 text-gray-900 mb-4']&quot;}&#10;  (Session info: chrome=98.0.4758.82)&#10;For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element&#10;Build info: version: '4.1.1', revision: 'e8fcc2cecf'&#10;System info: host: 'DESKTOP-7IEGLE9', ip: '192.168.10.8', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.1'&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Command: [54daaf7c1bea897bb0e235fb9550cc3c, findElement {using=xpath, value=//h1[@class='h4 text-gray-900 mb-4']}]&#10;Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 98.0.4758.82, chrome: {chromedriverVersion: 97.0.4692.71 (adefa7837d02a..., userDataDir: C:\Users\danik\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:56371}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:56371/devtoo..., se:cdpVersion: 98.0.4758.82, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}&#10;Session ID: 54daaf7c1bea897bb0e235fb9550cc3c" type="org.openqa.selenium.NoSuchElementException"><![CDATA[When click on forgot password...............................................passed
+Then user is on forgotpassword page.........................................passed
+When user enter the email'carepaperautomation@gmail.com'....................passed
+And click on reset button...................................................passed
+Then user is navigated to the login page and a comfirmation message is shown.passed
+Then user opens the email and enter email'carepaperautomation@gmail.com' and click next and enter password'password@carepaper' and click next.passed
+Then user is navigated to inbox and opens the 'Reset password instructions' mail.passed
+And user click on Rest Password button......................................passed
+Then user navigate to changepassword screen.................................passed
+And user enter new password '11223344' and confirm new password'11223344'...passed
+When user click change password button......................................passed
+Then user is navigated to login page........................................failed
+When user enter the email 'carepaperautomation@gmail.com' and password '11223344'.skipped
+And user click on login button..............................................skipped
+And User navigate back to email screen......................................skipped
+
+StackTrace:
+org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//h1[@class='h4 text-gray-900 mb-4']"}
+  (Session info: chrome=98.0.4758.82)
+For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+Build info: version: '4.1.1', revision: 'e8fcc2cecf'
+System info: host: 'DESKTOP-7IEGLE9', ip: '192.168.10.8', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.1'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Command: [54daaf7c1bea897bb0e235fb9550cc3c, findElement {using=xpath, value=//h1[@class='h4 text-gray-900 mb-4']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 98.0.4758.82, chrome: {chromedriverVersion: 97.0.4692.71 (adefa7837d02a..., userDataDir: C:\Users\danik\AppData\Loca...}, goog:chromeOptions: {debuggerAddress: localhost:56371}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), se:cdp: ws://localhost:56371/devtoo..., se:cdpVersion: 98.0.4758.82, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
+Session ID: 54daaf7c1bea897bb0e235fb9550cc3c
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:184)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:167)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:142)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:543)
+	at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:162)
+	at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:60)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:367)
+	at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:359)
+	at org.openqa.selenium.support.pagefactory.DefaultElementLocator.findElement(DefaultElementLocator.java:70)
+	at org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke(LocatingElementHandler.java:39)
+	at jdk.proxy2/jdk.proxy2.$Proxy25.getText(Unknown Source)
+	at carepaper.pagestructure.loginPage.verify_login_title(loginPage.java:81)
+	at carepaper.teststepsdefinition.forgotpasswordsteps.user_is_navigated_to_login_page(forgotpasswordsteps.java:101)
+	at ✽.user is navigated to login page(file:///C:/Users/danik/eclipse-workspace/carePaper/src/test/resources/carepaper.testscenarios/forgotpassword.feature:17)
+]]></failure>
+    </testcase>
+</testsuite>
