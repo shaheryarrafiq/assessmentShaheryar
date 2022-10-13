@@ -1,0 +1,309 @@
+{
+	"info": {
+		"_postman_id": "b6c1f323-4652-4cb3-a8f2-b541063b1c4b",
+		"name": "AccessmentShaheryar",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9223986"
+	},
+	"item": [
+		{
+			"name": "Response Checks - CreateBooking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"API response is within threshhold (800ms)\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content Type is available\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\" : \"Jim\",\n    \"lastname\" : \"Brown\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}"
+				},
+				"url": {
+					"raw": "{{Prod_URL}}booking",
+					"host": [
+						"{{Prod_URL}}booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Body Checks - CreateBooking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"API response contains the expected data\", () => {\r",
+							"  const response = pm.response.json();\r",
+							"\r",
+							"    \r",
+							"    pm.environment.set(\"firstname\", response.booking.firstname);\r",
+							"    pm.expect(response.booking.firstname).to.eql(pm.environment.get(\"firstname\"));\r",
+							"\r",
+							"    pm.environment.set(\"lastname\", response.booking.lastname);\r",
+							"    pm.expect(response.booking.lastname).to.eql(pm.environment.get(\"lastname\"));\r",
+							"\r",
+							"    pm.environment.set(\"checkin\", response.booking.bookingdates.checkin);\r",
+							"    pm.expect(response.booking.bookingdates.checkin).to.eql(pm.environment.get(\"checkin\"));\r",
+							"\r",
+							"    pm.environment.set(\"checkout\", response.booking.bookingdates.checkout);\r",
+							"    pm.expect(response.booking.bookingdates.checkout).to.eql(pm.environment.get(\"checkout\"));    \r",
+							"\r",
+							"    pm.environment.set(\"depositpaid\", response.booking.depositpaid);\r",
+							"    pm.expect(response.booking.depositpaid).to.be.a(\"boolean\");\r",
+							"\r",
+							"    pm.environment.set(\"additionalneeds\", response.booking.additionalneeds);\r",
+							"    pm.expect(response.booking.additionalneeds).to.eql(pm.environment.get(\"additionalneeds\"));\r",
+							"});\r",
+							"\r",
+							"pm.test(\"First Name is not null\", () => {\r",
+							"pm.expect(pm.response.json().booking.firstname).to.not.eql(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Last Name is not null\", () => {\r",
+							"pm.expect(pm.response.json().booking.lastname).to.not.eql(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checkin field is not null\", () => {\r",
+							"pm.expect(pm.response.json().booking.bookingdates.checkin).to.not.eql(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Checkout field is not null\", () => {\r",
+							"pm.expect(pm.response.json().booking.bookingdates.checkout).to.not.eql(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Deposit paid field is not null\", () => {\r",
+							"pm.expect(pm.response.json().booking.depositpaid).to.not.eql(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Booking ID is not null\", () => {\r",
+							"pm.expect(pm.response.json().bookingid).to.not.eql(null);\r",
+							"});\r",
+							"\r",
+							"const schema = {\r",
+							"  \"$schema\": \"http://json-schema.org/draft-04/schema#\",\r",
+							"  \"type\": \"object\",\r",
+							"  \"properties\": {\r",
+							"    \"bookingid\": {\r",
+							"      \"type\": \"integer\"\r",
+							"    },\r",
+							"    \"booking\": {\r",
+							"      \"type\": \"object\",\r",
+							"      \"properties\": {\r",
+							"        \"firstname\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"lastname\": {\r",
+							"          \"type\": \"string\"\r",
+							"        },\r",
+							"        \"totalprice\": {\r",
+							"          \"type\": \"integer\"\r",
+							"        },\r",
+							"        \"depositpaid\": {\r",
+							"          \"type\": \"boolean\"\r",
+							"        },\r",
+							"        \"bookingdates\": {\r",
+							"          \"type\": \"object\",\r",
+							"          \"properties\": {\r",
+							"            \"checkin\": {\r",
+							"              \"type\": \"string\"\r",
+							"            },\r",
+							"            \"checkout\": {\r",
+							"              \"type\": \"string\"\r",
+							"            }\r",
+							"          },\r",
+							"          \"required\": [\r",
+							"            \"checkin\",\r",
+							"            \"checkout\"\r",
+							"          ]\r",
+							"        },\r",
+							"        \"additionalneeds\": {\r",
+							"          \"type\": \"string\"\r",
+							"        }\r",
+							"      },\r",
+							"      \"required\": [\r",
+							"        \"firstname\",\r",
+							"        \"lastname\",\r",
+							"        \"totalprice\",\r",
+							"        \"depositpaid\",\r",
+							"        \"bookingdates\",\r",
+							"        \"additionalneeds\"\r",
+							"      ]\r",
+							"    }\r",
+							"  },\r",
+							"  \"required\": [\r",
+							"    \"bookingid\",\r",
+							"    \"booking\"\r",
+							"  ]\r",
+							"};\r",
+							"\r",
+							"\r",
+							"var jsonResponse = pm.response.json();\r",
+							"pm.test('Schema is valid', function() {\r",
+							"  pm.expect(tv4.validate(jsonResponse, schema)).to.be.true;\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const moment = require('moment');\r",
+							"pm.globals.set(\"checkin\", moment().format(\"YYYY-MM-DD\"));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\" : \"{{$randomFirstName}}\",\n    \"lastname\" : \"{{$randomFirstName}}\",\n    \"totalprice\" : \"{{$randomInt}}\",\n    \"depositpaid\" : \"{{$randomBoolean}}\",\n    \"bookingdates\" : {\n        \"checkin\" : \"{{checkin}}\",\n        \"checkout\" : \"{{checkin}}\"\n    },\n    \"additionalneeds\" : \"{{$randomLoremWords}}\"\n}"
+				},
+				"url": {
+					"raw": "{{Prod_URL}}booking",
+					"host": [
+						"{{Prod_URL}}booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Empty Checks - CreateBooking",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Booking ID is not null\", () => {\r",
+							"pm.expect(pm.response.json().bookingid).to.not.eql(null);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Firstname field should not be empty\", () => {\r",
+							"pm.expect(pm.response.json().booking.firstname).to.not.eql(\"\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Lastname field should not be empty\", () => {\r",
+							"pm.expect(pm.response.json().booking.lastname).to.not.eql(\"\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Totalprice field should not be empty\", () => {\r",
+							"pm.expect(pm.response.json().booking.totalprice).to.not.eql(\"\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Depositpaid field should not be empty\", () => {\r",
+							"pm.expect(pm.response.json().booking.depositpaid).to.not.eql(\"\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Bookingdates field should not be empty\", () => {\r",
+							"pm.expect(pm.response.json().booking.bookingdates.firstname).to.not.eql(\"\")\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Additionalneeds field should not be empty\", () => {\r",
+							"pm.expect(pm.response.json().booking.additionalneeds).to.not.eql(\"\")\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"firstname\" : \"\",\n    \"lastname\" : \"\",\n    \"totalprice\" : \"\",\n    \"depositpaid\" : \"\",\n    \"bookingdates\" : {\n        \"checkin\" : \"\",\n        \"checkout\" : \"\"\n    },\n    \"additionalneeds\" : \"\"\n}"
+				},
+				"url": {
+					"raw": "{{Prod_URL}}booking",
+					"host": [
+						"{{Prod_URL}}booking"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Failure Checks - CreateBooking Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 400 = Bad Request\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n    \"lastname\" : \"\",\n    \"totalprice\" : \"\",\n    \"depositpaid\" : \"\",\n    \"bookingdates\" : {\n        \"checkin\" : \"\",\n        \"checkout\" : \"\"\n    },\n    \"additionalneeds\" : \"\"\n}"
+				},
+				"url": {
+					"raw": "{{Prod_URL}}booking",
+					"host": [
+						"{{Prod_URL}}booking"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
